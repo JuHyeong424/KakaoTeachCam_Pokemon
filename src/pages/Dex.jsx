@@ -23,6 +23,7 @@ function Dex() {
                 }
                 return [...prev, newPokemon];
             });
+            window.history.replaceState({}, document.title);
         }
     }, [location.state, setLimitAlert, setMyPokemon, setSameAlert]);
 
