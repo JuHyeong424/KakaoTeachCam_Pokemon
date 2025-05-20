@@ -7,11 +7,11 @@ import { usePokemonContext } from "../context/PokemonContext.jsx";
 function Dex() {
     const location = useLocation();
     const navigate = useNavigate();
-    const { setMyPokemon, limitAlert, setLimitAlert, sameAlert, setSameAlert } = usePokemonContext();
+    const { selectedPokemon, setSelectedPokemon, setMyPokemon, limitAlert, setLimitAlert, sameAlert, setSameAlert } = usePokemonContext();
 
     // 포켓몬 추가 처리
     useEffect(() => {
-        const newPokemon = location.state?.pokemon;
+        const newPokemon = selectedPokemon;
 
         if (newPokemon && newPokemon.id) {
             setMyPokemon(prev => {
@@ -24,10 +24,12 @@ function Dex() {
                 }
                 return [...prev, newPokemon];
             });
+            setSelectedPokemon(null);
+
             // replace: true 옵션으로 히스토리 상태 덮어쓰기
             navigate(location.pathname, { replace: true});
         }
-    }, [location.state, setLimitAlert, setMyPokemon, setSameAlert]);
+    }, [location.pathname, location.state, navigate, selectedPokemon, setLimitAlert, setMyPokemon, setSameAlert, setSelectedPokemon]);
 
     // 알림 처리
     useEffect(() => {

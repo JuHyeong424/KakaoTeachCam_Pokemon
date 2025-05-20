@@ -8,10 +8,11 @@ export function PokemonProvider({ children }) {
     const [myPokemon, setMyPokemon] = useState([]);
     const [limitAlert, setLimitAlert] = useState(false);
     const [sameAlert, setSameAlert] = useState(false);
+    const [selectedPokemon, setSelectedPokemon] = useState(null);
 
     return (
         <PokemonContext.Provider value={{
-            myPokemon, setMyPokemon, limitAlert, setLimitAlert, sameAlert, setSameAlert, pokemonList: MOCK_DATA }}
+            myPokemon, setMyPokemon, limitAlert, setLimitAlert, sameAlert, setSameAlert, pokemonList: MOCK_DATA, selectedPokemon, setSelectedPokemon }}
         >
             { children }
         </PokemonContext.Provider>

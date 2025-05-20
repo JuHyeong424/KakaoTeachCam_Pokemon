@@ -1,10 +1,12 @@
 import {useNavigate} from "react-router-dom";
 import styled from "styled-components";
+import {usePokemonContext} from "../context/PokemonContext.jsx";
 
 function PokemonCard({ pokemon }) {
     // id를 000으로 바꿔줌
     const id = String(pokemon.id).padStart(3, '0');
     const navigate = useNavigate();
+    const { setSelectedPokemon } = usePokemonContext();
 
     function onClickHandle() {
         navigate(`/detail?id=${pokemon.id}`);
@@ -12,7 +14,8 @@ function PokemonCard({ pokemon }) {
 
     function addClickHandle(e) {
         e.stopPropagation(); // 부모 클릭 이벤트 막기
-        navigate(`/dex`, {state: {pokemon}});
+        setSelectedPokemon(pokemon);
+        navigate(`/dex`);
     }
     
     return (
