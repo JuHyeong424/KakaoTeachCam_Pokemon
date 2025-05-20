@@ -1,11 +1,12 @@
 import PokemonList from "../components/PokemonList.jsx";
 import Dashboard from "../components/Dashboard.jsx";
-import { useLocation } from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import { useEffect } from "react";
 import { usePokemonContext } from "../context/PokemonContext.jsx";
 
 function Dex() {
     const location = useLocation();
+    const navigate = useNavigate();
     const { setMyPokemon, limitAlert, setLimitAlert, sameAlert, setSameAlert } = usePokemonContext();
 
     // 포켓몬 추가 처리
@@ -23,7 +24,8 @@ function Dex() {
                 }
                 return [...prev, newPokemon];
             });
-            window.history.replaceState({}, document.title);
+            // replace: true 옵션으로 히스토리 상태 덮어쓰기
+            navigate(location.pathname, { replace: true});
         }
     }, [location.state, setLimitAlert, setMyPokemon, setSameAlert]);
 
