@@ -1,46 +1,10 @@
-import {useEffect, useState} from "react";
 import styled from "styled-components";
 import {useNavigate} from "react-router-dom";
+import {usePokemonContext} from "../context/PokemonContext.jsx";
 
-function Dashboard({pokemon}) {
+function Dashboard() {
     const navigate = useNavigate();
-    const [myPokemon, setMyPokemon] = useState([]);
-    const [limitAlert, setLimitAlert] = useState(false);
-    const [sameAlert, setSameAlert] = useState(false);
-
-    useEffect(() => {
-        if (pokemon && pokemon.id) {
-            setMyPokemon(prev => {
-                if (prev.length >= 6) {
-                    setLimitAlert(true);
-                    return prev;
-                }
-
-                // 조건을 만족하는 요소가 하나라도 있으면 즉시 true를 반환하고 종료
-                const exists = prev.some(p => p.id === pokemon.id);
-                if (exists) {
-                    setSameAlert(true);
-                    return prev;
-                } else {
-                    return [...prev, pokemon];
-                }
-            });
-        }
-    }, [pokemon]);
-
-    useEffect(() => {
-        if (limitAlert) {
-            alert("포켓몬은 최대 여섯개까지만 선택 할 수 있어요.");
-            setLimitAlert(false);
-        }
-    }, [limitAlert])
-
-    useEffect(() => {
-        if (sameAlert) {
-            alert('이미 선택된 포켓몬입니다.')
-            setSameAlert(false);
-        }
-    }, [sameAlert]);
+    const { myPokemon, setMyPokemon } = usePokemonContext();
 
     function onClickDelete(item) {
         setMyPokemon(arr => arr.filter(p => p.id !== item.id));
@@ -49,8 +13,6 @@ function Dashboard({pokemon}) {
     function onClickHandle(id) {
         navigate(`/detail?id=${id}`);
     }
-
-    console.log(myPokemon)
 
     return (
         <DashBoardContainer>

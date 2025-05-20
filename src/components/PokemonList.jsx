@@ -1,11 +1,13 @@
-import MOCK_DATA from "../data/MOCK_DATA.jsx";
 import PokemonCard from "./PokemonCard.jsx";
 import styled from "styled-components";
+import {usePokemonContext} from "../context/PokemonContext.jsx";
 
 function PokemonList() {
+    const { pokemonList } = usePokemonContext();
+
     return (
         <ListContainer>
-        {MOCK_DATA.map(pokemon => (
+        {pokemonList.map(pokemon => (
             <PokemonCard key={pokemon.id} pokemon={pokemon} />
         ))}
         </ListContainer>
