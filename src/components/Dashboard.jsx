@@ -4,9 +4,10 @@ import {usePokemonContext} from "../context/PokemonContext.jsx";
 
 function Dashboard() {
     const navigate = useNavigate();
-    const { myPokemon, setMyPokemon } = usePokemonContext();
+    const { notifyDelete, myPokemon, setMyPokemon } = usePokemonContext();
 
     function onClickDelete(item) {
+        notifyDelete();
         setMyPokemon(arr => arr.filter(p => p.id !== item.id));
     }
 

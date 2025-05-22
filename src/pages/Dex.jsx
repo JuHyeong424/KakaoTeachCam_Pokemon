@@ -7,7 +7,7 @@ import { usePokemonContext } from "../context/PokemonContext.jsx";
 function Dex() {
     const location = useLocation();
     const navigate = useNavigate();
-    const { dexAlert, setDexAlert, notifyLimit, notifySame, selectedPokemon, setSelectedPokemon, setMyPokemon } = usePokemonContext();
+    const { notifyAdd, dexAlert, setDexAlert, notifyLimit, notifySame, selectedPokemon, setSelectedPokemon, setMyPokemon } = usePokemonContext();
 
     // 포켓몬 추가 처리
     useEffect(() => {
@@ -22,6 +22,7 @@ function Dex() {
                     setDexAlert('same');
                     return prev;
                 }
+                setDexAlert('add');
                 return [...prev, newPokemon];
             });
             setSelectedPokemon(null);
@@ -37,6 +38,8 @@ function Dex() {
             notifyLimit();
         } else if (dexAlert === 'same') {
             notifySame();
+        } else if (dexAlert === 'add'){
+            notifyAdd();
         }
         setDexAlert(null);
     }, [dexAlert]);

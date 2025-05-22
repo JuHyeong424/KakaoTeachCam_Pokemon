@@ -17,13 +17,21 @@ export function PokemonProvider({ children }) {
         toast.warn("이미 선택된 포켓몬입니다.");
     }
 
+    const notifyAdd = () => {
+        toast.success("나의 포켓몬을 추가했습니다.")
+    }
+
     const notifyNotSame = () => {
         toast.warn("선택된 포켓몬이 아닙니다.")
     }
 
+    const notifyDelete = () => {
+        toast("나의 포켓몬을 삭제했습니다.")
+    }
+
     return (
         <PokemonContext.Provider value={{
-            myPokemon, setMyPokemon, dexAlert, setDexAlert, pokemonList: MOCK_DATA, selectedPokemon, setSelectedPokemon, notifyLimit, notifySame, notifyNotSame }}
+            notifyDelete, notifyAdd, myPokemon, setMyPokemon, dexAlert, setDexAlert, pokemonList: MOCK_DATA, selectedPokemon, setSelectedPokemon, notifyLimit, notifySame, notifyNotSame }}
         >
             { children }
         </PokemonContext.Provider>

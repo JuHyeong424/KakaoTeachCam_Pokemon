@@ -5,7 +5,7 @@ import {useEffect, useState} from "react";
 
 function DetailBoard({ pokemon }) {
     const navigate = useNavigate();
-    const { notifyLimit, notifySame, notifyNotSame, myPokemon, setMyPokemon } = usePokemonContext();
+    const { notifyDelete, notifyAdd, notifyLimit, notifySame, notifyNotSame, myPokemon, setMyPokemon } = usePokemonContext();
 
     const [detailAlert, setDetailAlert] = useState(null);
     console.log(myPokemon);
@@ -24,6 +24,7 @@ function DetailBoard({ pokemon }) {
         } else if (limit) {
             setDetailAlert('limit');
         } else {
+            notifyAdd();
             setMyPokemon([...myPokemon, pokemon]);
         }
     }
@@ -31,6 +32,7 @@ function DetailBoard({ pokemon }) {
     function deleteMyPokemon() {
         const exists = myPokemon.some(p => p.id === pokemon.id);
         if (exists) {
+            notifyDelete();
             setMyPokemon(prev => prev.filter(k => k.id !== pokemon.id));
         } else {
             setDetailAlert('noSelected');
@@ -51,13 +53,18 @@ function DetailBoard({ pokemon }) {
 
     return (
         <DetailComponent>
+            <TopBar>
+                <BackButton onClick={onClickHandle}>back</BackButton>
+            </TopBar>
             <DetailImg src={pokemon.img_url} alt={pokemon.korean_name}></DetailImg>
             <DetailName>{pokemon.korean_name}</DetailName>
             <p>{pokemon.types}</p>
             <p>{pokemon.description}</p>
-            <BackButton onClick={onClickHandle}>뒤로 가기</BackButton>
-            <button onClick={addMyPokemon}>추가하기</button>
-            <button onClick={deleteMyPokemon}>삭제하기</button>
+            <ButtonGroup>
+                <button onClick={addMyPokemon}>추가하기</button>
+                <button onClick={deleteMyPokemon}>삭제하기</button>
+            </ButtonGroup>
+
         </DetailComponent>
     )
 }
@@ -76,10 +83,15 @@ const DetailComponent = styled.div`
     font-family: "CookieRun Regular", sans-serif;
     padding: 20px;
 `
-
+const TopBar = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+`
 const BackButton = styled.button`
     background-color: orange;
     margin-top: 20px;
+    margin-right: 20px;
 
     &:hover {
         background-color: indianred;
@@ -87,14 +99,25 @@ const BackButton = styled.button`
         border: 1px solid indianred;
     }
 `
-
 const DetailImg = styled.img`
     width: 200px;   
     height: 200px;
 `
-
 const DetailName = styled.h3`
     color: red;
     font-size: 2rem;   
     margin: 0;
+`
+const ButtonGroup = styled.div`
+    display: flex;   
+    justify-content: space-between;
+    width: 300px;
+    margin-top: 20px;
+    
+    @media (max-width: 800px) {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+    }
 `

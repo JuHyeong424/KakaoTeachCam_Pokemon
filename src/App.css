@@ -5,3 +5,15 @@
   text-align: center;
 }
 
+.toast-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.toast-message {
+  width: 400px;
+  max-width: 90vw;
+  margin: 0 auto;
+  text-align: center;
+}
