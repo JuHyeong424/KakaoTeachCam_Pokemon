@@ -6,8 +6,7 @@ const PokemonContext = createContext();
 
 export function PokemonProvider({ children }) {
     const [myPokemon, setMyPokemon] = useState([]);
-    const [limitAlert, setLimitAlert] = useState(false);
-    const [sameAlert, setSameAlert] = useState(false);
+    const [dexAlert, setDexAlert] = useState(null);
     const [selectedPokemon, setSelectedPokemon] = useState(null);
 
     const notifyLimit = () => {
@@ -24,7 +23,7 @@ export function PokemonProvider({ children }) {
 
     return (
         <PokemonContext.Provider value={{
-            myPokemon, setMyPokemon, limitAlert, setLimitAlert, sameAlert, setSameAlert, pokemonList: MOCK_DATA, selectedPokemon, setSelectedPokemon, notifyLimit, notifySame, notifyNotSame }}
+            myPokemon, setMyPokemon, dexAlert, setDexAlert, pokemonList: MOCK_DATA, selectedPokemon, setSelectedPokemon, notifyLimit, notifySame, notifyNotSame }}
         >
             { children }
         </PokemonContext.Provider>

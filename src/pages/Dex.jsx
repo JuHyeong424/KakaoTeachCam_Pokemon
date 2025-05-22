@@ -7,7 +7,7 @@ import { usePokemonContext } from "../context/PokemonContext.jsx";
 function Dex() {
     const location = useLocation();
     const navigate = useNavigate();
-    const { notifyLimit, notifySame, selectedPokemon, setSelectedPokemon, setMyPokemon, limitAlert, setLimitAlert, sameAlert, setSameAlert } = usePokemonContext();
+    const { dexAlert, setDexAlert, notifyLimit, notifySame, selectedPokemon, setSelectedPokemon, setMyPokemon } = usePokemonContext();
 
     // 포켓몬 추가 처리
     useEffect(() => {
@@ -16,10 +16,10 @@ function Dex() {
         if (newPokemon && newPokemon.id) {
             setMyPokemon(prev => {
                 if (prev.length >= 6) {
-                    setLimitAlert(true);
+                    setDexAlert('limit');
                     return prev;
                 } else if (prev.some(p => p.id === newPokemon.id)) {
-                    setSameAlert(true);
+                    setDexAlert('same');
                     return prev;
                 }
                 return [...prev, newPokemon];
@@ -29,22 +29,17 @@ function Dex() {
             // replace: true 옵션으로 히스토리 상태 덮어쓰기
             navigate(location.pathname, { replace: true});
         }
-    }, [location.pathname, location.state, navigate, selectedPokemon, setLimitAlert, setMyPokemon, setSameAlert, setSelectedPokemon]);
+    }, [location.pathname, location.state, navigate, selectedPokemon, setMyPokemon, setSelectedPokemon, setDexAlert]);
 
     // 알림 처리
     useEffect(() => {
-        if (limitAlert) {
+        if (dexAlert === 'limit') {
             notifyLimit();
-            setLimitAlert(false);
-        }
-    }, [limitAlert]);
-
-    useEffect(() => {
-        if (sameAlert) {
+        } else if (dexAlert === 'same') {
             notifySame();
-            setSameAlert(false);
         }
-    }, [sameAlert]);
+        setDexAlert(null);
+    }, [dexAlert]);
 
     return (
         <div>

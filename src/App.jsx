@@ -15,7 +15,7 @@ function App() {
                   <Route path="/dex" element={<Dex />} />
                   <Route path="/detail" element={<Detail />} />
               </Routes>
-                <ToastContainer position="top-center" autoClose={3000} closeOnClick draggable />
+                <ToastContainer position="top-center" autoClose={1000} closeOnClick draggable />
             </PokemonProvider>
         </BrowserRouter>
   )
