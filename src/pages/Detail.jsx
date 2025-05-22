@@ -1,6 +1,7 @@
 import DetailBoard from "../components/DetailBoard.jsx";
 import {useLocation} from "react-router-dom";
 import MOCK_DATA from "../data/MOCK_DATA.jsx";
+import {usePokemonContext} from "../context/PokemonContext.jsx";
 
 function Detail() {
     const location = useLocation();

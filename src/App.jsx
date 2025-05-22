@@ -4,6 +4,7 @@ import Home from "./pages/Home.jsx";
 import Dex from "./pages/Dex.jsx";
 import Detail from "./pages/Detail.jsx";
 import {PokemonProvider} from "./context/PokemonContext.jsx";
+import {ToastContainer} from "react-toastify";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
                   <Route path="/dex" element={<Dex />} />
                   <Route path="/detail" element={<Detail />} />
               </Routes>
+                <ToastContainer position="top-center" autoClose={3000} closeOnClick draggable />
             </PokemonProvider>
         </BrowserRouter>
   )
