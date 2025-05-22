@@ -34,17 +34,17 @@ function Dex() {
     // 알림 처리
     useEffect(() => {
         if (limitAlert) {
-            notifyLimit("포켓몬은 최대 여섯개까지만 선택 할 수 있어요.");
+            notifyLimit();
             setLimitAlert(false);
         }
-    }, [limitAlert, notifyLimit, setLimitAlert]);
+    }, [limitAlert]);
 
     useEffect(() => {
         if (sameAlert) {
-            notifySame('이미 선택된 포켓몬입니다.');
+            notifySame();
             setSameAlert(false);
         }
-    }, [notifySame, sameAlert, setSameAlert]);
+    }, [sameAlert]);
 
     return (
         <div>

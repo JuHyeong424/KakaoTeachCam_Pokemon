@@ -1,12 +1,53 @@
 import {useNavigate} from "react-router-dom";
 import styled from "styled-components";
+import {usePokemonContext} from "../context/PokemonContext.jsx";
+import {useEffect, useState} from "react";
 
 function DetailBoard({ pokemon }) {
     const navigate = useNavigate();
+    const { notifyLimit, notifySame, notifyNotSame, myPokemon, setMyPokemon } = usePokemonContext();
+
+    const [detailAlert, setDetailAlert] = useState(null);
+    console.log(myPokemon);
+    console.log(pokemon)
 
     function onClickHandle() {
         navigate('/dex');
     }
+
+    function addMyPokemon() {
+        const exists = myPokemon.some(p => p.id === pokemon.id);
+        const limit = myPokemon.length === 6;
+
+        if (exists) {
+            setDetailAlert('duplicate');
+        } else if (limit) {
+            setDetailAlert('limit');
+        } else {
+            setMyPokemon([...myPokemon, pokemon]);
+        }
+    }
+
+    function deleteMyPokemon() {
+        const exists = myPokemon.some(p => p.id === pokemon.id);
+        if (exists) {
+            setMyPokemon(prev => prev.filter(k => k.id !== pokemon.id));
+        } else {
+            setDetailAlert('noSelected');
+        }
+    }
+
+    useEffect(() => {
+        if (detailAlert === 'duplicate') {
+            notifySame();
+        } else if (detailAlert === 'limit') {
+            notifyLimit();
+        } else if (detailAlert === 'noSelected') {
+            notifyNotSame();
+        }
+
+        setDetailAlert(null);
+    }, [detailAlert]);
 
     return (
         <DetailComponent>
@@ -15,6 +56,8 @@ function DetailBoard({ pokemon }) {
             <p>{pokemon.types}</p>
             <p>{pokemon.description}</p>
             <BackButton onClick={onClickHandle}>뒤로 가기</BackButton>
+            <button onClick={addMyPokemon}>추가하기</button>
+            <button onClick={deleteMyPokemon}>삭제하기</button>
         </DetailComponent>
     )
 }

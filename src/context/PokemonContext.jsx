@@ -18,9 +18,13 @@ export function PokemonProvider({ children }) {
         toast.warn("이미 선택된 포켓몬입니다.");
     }
 
+    const notifyNotSame = () => {
+        toast.warn("선택된 포켓몬이 아닙니다.")
+    }
+
     return (
         <PokemonContext.Provider value={{
-            myPokemon, setMyPokemon, limitAlert, setLimitAlert, sameAlert, setSameAlert, pokemonList: MOCK_DATA, selectedPokemon, setSelectedPokemon, notifyLimit, notifySame }}
+            myPokemon, setMyPokemon, limitAlert, setLimitAlert, sameAlert, setSameAlert, pokemonList: MOCK_DATA, selectedPokemon, setSelectedPokemon, notifyLimit, notifySame, notifyNotSame }}
         >
             { children }
         </PokemonContext.Provider>
