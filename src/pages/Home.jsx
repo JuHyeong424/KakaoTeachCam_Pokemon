@@ -1,5 +1,6 @@
 import {useNavigate} from "react-router-dom";
 import styled from 'styled-components';
+import backgroundImage from '../assets/background2.jpg';
 
 function Home() {
     const navigate = useNavigate();
@@ -22,24 +23,37 @@ function Home() {
 export default Home;
 
 const HomeContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-image: url(${backgroundImage});
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
 `
 
 const Img = styled.img`
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 600px;
     height: 220px;
-    margin-bottom: 20px;
 `
 
 const Button = styled.button`
-    width: 214px;   
-    height: 44px;
-    background-color: lightgray;
-    font-family: "CookieRun Regular",serif;
-    
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 260px;
+    height: 60px;
+    background-color: red;
+    color: white;
+    font-family: "CookieRun Regular", serif;
+
     &:hover {
         background-color: black;
         color: white;

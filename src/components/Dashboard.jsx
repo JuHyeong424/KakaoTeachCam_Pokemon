@@ -51,6 +51,8 @@ const DashBoardContainer = styled.div`
 
 const DashGrid = styled.div`
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 20px;
     overflow-x: auto;
     padding: 10px;
@@ -85,11 +87,12 @@ const CardLayout = styled.div`
 
 const Button = styled.button`
     font-family: "CookieRun Regular", sans-serif;
-    background-color: lightgray;
+    background-color: palevioletred;
+    color: white;
     
     &:hover {
         background-color: indianred;
-        color: white;
+        color: black;
         border: 1px solid indianred;
     }
 `

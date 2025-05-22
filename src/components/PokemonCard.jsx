@@ -63,9 +63,9 @@ const CardButton = styled.button`
     color: white;
     
     &:hover{
-        background-color: darkblue;
-        border: 1px solid darkblue;
-        color: white;
+        background-color: cornflowerblue;
+        border: 1px solid cornflowerblue;
+        color: black;
     }
 `
 
