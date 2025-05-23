@@ -47,12 +47,13 @@ const DashBoardContainer = styled.div`
     border: 1px solid gainsboro;
     border-radius: 20px;
     margin-bottom: 20px;
+    
 `
 
 const DashGrid = styled.div`
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 20px;
     overflow-x: auto;
     padding: 10px;

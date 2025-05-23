@@ -57,5 +57,6 @@ const Button = styled.button`
     &:hover {
         background-color: black;
         color: white;
+        border: 1px solid black;
     }
 `
