@@ -53,13 +53,15 @@ const DashBoardContainer = styled.div`
 const DashGrid = styled.div`
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     margin: 0 auto;
-    width: 1300px;
     gap: 20px;
     overflow-x: auto;
     padding: 10px;
     
+    @media (max-width: 1300px) {
+        justify-content: flex-start;
+    }
 `;
 
 
