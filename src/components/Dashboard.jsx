@@ -54,9 +54,12 @@ const DashGrid = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    margin: 0 auto;
+    width: 1300px;
     gap: 20px;
     overflow-x: auto;
     padding: 10px;
+    
 `;
 
 

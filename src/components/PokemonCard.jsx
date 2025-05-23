@@ -6,7 +6,9 @@ function PokemonCard({ pokemon }) {
     // id를 000으로 바꿔줌
     const id = String(pokemon.id).padStart(3, '0');
     const navigate = useNavigate();
-    const { setSelectedPokemon } = usePokemonContext();
+    const { myPokemon, setSelectedPokemon } = usePokemonContext();
+
+    const isSelected = myPokemon.some(p => p.id === pokemon.id);
 
     function onClickHandle() {
         navigate(`/detail?id=${pokemon.id}`);
@@ -17,14 +19,18 @@ function PokemonCard({ pokemon }) {
         setSelectedPokemon(pokemon);
         navigate(`/dex`);
     }
-    
+
     return (
         <CardContainer>
             <CardLayout onClick={onClickHandle}>
                 <img src={pokemon.img_url} alt={pokemon.korean_name}></img>
                 <h3>{pokemon.korean_name}</h3>
                 <Id>No. {id}</Id>
-                <CardButton onClick={addClickHandle}>추가</CardButton>
+                {isSelected ?
+                    <Selected disabled>선택됨</Selected>
+                    : <CardButton onClick={addClickHandle}>추가</CardButton>
+            }
+
             </CardLayout>
         </CardContainer>
     )
@@ -71,4 +77,11 @@ const CardButton = styled.button`
 
 const Id = styled.p`
     font-family: "CookieRun Regular", sans-serif;   
+`
+
+const Selected = styled.button`
+   
+    font-family: "CookieRun Regular", sans-serif;
+    background-color: lightgrey;
+    color: white;
 `
