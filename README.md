@@ -54,7 +54,7 @@
 </table>
 
 <h2>회고</h2>
-
+<p><strong>트러블 슈팅 로그</strong>: https://www.notion.so/teamsparta/1-T-I-L-1c92dc3ef514802f85b7eeb46784afdd?p=1fc2dc3ef51480dea40dcf73fc213da4&pm=s</p>
 <h3>고민 1: 유령 데이터 문제</h3>
 <ul>
   <li><strong>문제</strong>: 콘솔에서는 데이터가 보이지만, JSX에서는 <code>undefined</code>로 접근되는 현상 발생</li>
