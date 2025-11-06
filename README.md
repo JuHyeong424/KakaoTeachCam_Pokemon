@@ -52,3 +52,32 @@
     </tr>
   </tbody>
 </table>
+
+<h2>회고</h2>
+
+<h3>고민 1: 유령 데이터 문제</h3>
+<ul>
+  <li><strong>문제</strong>: 콘솔에서는 데이터가 보이지만, JSX에서는 <code>undefined</code>로 접근되는 현상 발생</li>
+  <li><strong>원인</strong>: <code>navigate</code> 실행과 컴포넌트 렌더링 간 미세한 타이밍 충돌</li>
+  <li><strong>해결</strong>: <code>navigate</code>의 <code>state</code> 옵션을 사용하여 
+      데이터 전달을 명확히 하고 페이지 책임을 분리하여 렌더링 안정화</li>
+</ul>
+
+<h3>고민 2: alert 창 중복 실행</h3>
+<ul>
+  <li><strong>문제</strong>: 한 번만 떠야 할 경고창이 여러 번 실행됨</li>
+  <li><strong>원인</strong>: React <code>StrictMode</code>의 중복 렌더링으로 인한 부수 효과</li>
+  <li><strong>해결</strong>: 상태(State)를 통해 실행 조건을 제어하고,
+      부수 효과의 <strong>멱등성(idempotence)</strong>을 고려하여 코드 개선</li>
+</ul>
+
+<h2>무엇을 배웠는가</h2>
+<ul>
+  <li><strong>데이터 흐름 설계의 중요성</strong>:
+      안정적인 앱을 위해 데이터 전달 구조를 명확히 해야 함</li>
+  <li><strong>React 내부 동작 이해</strong>:
+      StrictMode 등 프레임워크의 동작 메커니즘이 버그 해결의 핵심</li>
+  <li><strong>Side Effect 제어</strong>:
+      렌더링은 여러 번 일어날 수 있으며, 부수 효과는 신중하게 다루어야 함</li>
+</ul>
+
